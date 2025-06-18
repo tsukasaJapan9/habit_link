@@ -1,0 +1,32 @@
+FROM python:3.12-slim
+
+ARG USERNAME=system
+ARG UID=1001
+ARG GID=1001
+
+RUN groupadd -g ${GID} ${USERNAME} && useradd -u ${UID} -g ${GID} -m ${USERNAME}
+
+WORKDIR /workspace/app
+RUN chown -R ${USERNAME}:${USERNAME} /workspace
+
+# dockerの中 or 外を判別するためのファイル
+RUN touch /DOCKER
+
+RUN apt-get update && apt-get install -y \
+  procps
+
+USER ${USERNAME}
+
+COPY pyproject.toml uv.lock /workspace/
+RUN pip install uv
+
+# uvにパスが通らないのでシンボリックリンク作成で対応する
+USER root
+RUN ln -s /home/system/.local/bin/uv /usr/local/bin/uv
+USER ${USERNAME}
+RUN /usr/local/bin/uv sync
+
+EXPOSE 8501
+
+CMD ["/bin/bash"]
+# CMD bash -c "./run_llm_server.sh & ./run_ui.sh"

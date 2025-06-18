@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "video_search": {
+      "command": "/home/tsukasa/.pyenv/shims/uv",
+      "args": [
+        "run",
+        "./mcp_server/video_search_mcp_server.py"
+      ],
+      "env": {
+        "GOOGLE_API_KEY": "GOOGLE_API_KEY"
+      }
+    }
+  }
+}

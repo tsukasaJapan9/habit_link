@@ -1,0 +1,4 @@
+docker_*
+deploy.sh
+kill.sh
+typings
