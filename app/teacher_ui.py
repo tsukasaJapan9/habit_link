@@ -228,7 +228,7 @@ def main() -> None:
   if "system_prompt" not in st.session_state:
     st.session_state.system_prompt = ""
 
-  st.header(f"{teacher_name}先生、こんにちわ!")
+  st.header(f"{teacher_name}先生、こんにちは!")
   st.warning("注意: 使い終わったら必ずブラウザや本タブを閉じてください")
 
   # 生徒とエージェント間で行われた会話履歴をロード
