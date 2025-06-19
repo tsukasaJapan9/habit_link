@@ -542,8 +542,9 @@ def main() -> None:
           f"{message.__class__.__name__}(name: {message.name}, id: {message.id}): {message.content[:DEBUG_MESSAGE_SIZE]}"
         )
 
-  if st.button("習慣スタート", disabled=not bool(st.session_state.student_info.goal), type="primary"):
-    start_activity(st.session_state.student_info.user_name, st.session_state.instruction_from_teacher)
+  if st.session_state.student_info.goal:
+    if st.button("習慣スタート", disabled=not bool(st.session_state.student_info.goal), type="primary"):
+      start_activity(st.session_state.student_info.user_name, st.session_state.instruction_from_teacher)
 
 
 if __name__ == "__main__":
