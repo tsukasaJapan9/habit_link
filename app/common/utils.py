@@ -39,6 +39,7 @@ BUTTON_STYLE_STUDENT = """
 
     .stChatInput {
       margin-bottom: -250px !important;
+      margin-top: -10px !important;
     }
     </style>
 """
@@ -68,6 +69,7 @@ BUTTON_STYLE_TEACHER = """
 
     .stChatInput {
       margin-bottom: -250px !important;
+      margin-top: -10px !important;
     }
     
     /* チェックされたラジオボタンの色を黒に */
