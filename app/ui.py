@@ -382,7 +382,7 @@ def main() -> None:
 
   st.session_state.teacher_name = teacher_name
 
-  st.header(f"こんにちわ {st.session_state.student_info.user_name}さん!")
+  st.header(f"こんにちは {st.session_state.student_info.user_name}さん!")
   st.warning("注意: 使い終わったら必ずブラウザや本タブを閉じてください")
 
   # =======================================
