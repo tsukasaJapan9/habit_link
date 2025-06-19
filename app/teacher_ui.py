@@ -54,16 +54,26 @@ def create_chat_summary(chat_history: list[BaseMessage]) -> str:
   chat_hisutory_only_human = [message.content for message in chat_history if isinstance(message, HumanMessage)]
   system_prompt = """
   ### タスク
-  あなたはピラティスのインストラクターです。
-  「ピラティスのインストラクターのメモ」を参照し、
-  生徒に伝えるべきことがあれば重要度が高い順番に3つまで抽出して
-  先生が生徒に話しかけるような口調で一項目100文字以内でまとめてください。
+  あなたはピラティスの先生のアシスタントです。
+  「ピラティスの先生のメモ」を参照し、
+  生徒に伝えるべきことがあれば重要度が高い順番に3つまで抽出し
+  先生から生徒に対する手紙のような語り口調で1項目100文字以内でまとめてください。
   伝えるべきことがなければ「伝言はありません」と出力してください。
+
+  ### ルール
+  - 以下のフォーマットに従って出力してください。それ以外は出力しないでください。
+  - ただし、伝えるべきことがない場合は「伝言はありません」と出力してください。
+  - あなたが先生になったつもりで生徒に対して語り口調で出力してください。
+  ```
+  1. xxxx(optional)
+  2. xxxx(optional)
+  3. xxxx(optional)
+  ```
   """
   system_message = SystemMessage(content=system_prompt)
 
   user_prompt = f"""
-  ### ピラティスのインストラクターのメモ
+  ### ピラティスの先生のメモ
   {chat_hisutory_only_human}
   """
   user_message = HumanMessage(content=user_prompt)
